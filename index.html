@@ -3,72 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curated Portfolio | Elevation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <title>H. MARZEC — STRATEGY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@100;200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="grain"></div>
+    
+    <div class="wave-container">
+        <canvas id="waveCanvas"></canvas>
+    </div>
 
-    <nav class="elevated-nav">
-        <div class="nav-left">AVAILABLE FOR COLLABORATION / 2024</div>
-        <div class="nav-right">
-            <a href="#work">WORK</a>
-            <a href="#about">ABOUT</a>
-            <a href="#contact">CONTACT</a>
+    <nav class="luxury-nav">
+        <div class="nav-brand">H. MARZEC</div>
+        <div class="nav-status">BEHAVIOURAL SCIENCE & VC STRATEGY</div>
+        <div class="nav-links">
+            <a href="#about">EXPOSITION</a>
+            <a href="#writing">WRITING</a>
+            <a href="#cv">ARCHIVE</a>
+            <a href="mailto:helen@example.com">INQUIRY</a>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-text">
-            <h1 class="reveal-text">Intentional</h1>
-            <h1 class="reveal-text italic">Strategy &</h1>
-            <h1 class="reveal-text">Curation</h1>
-        </div>
-        <div class="hero-subtext">
-            <p>A professional practice focused on the intersection of utility and high-end aesthetics.</p>
+    <header class="luxury-hero">
+        <div class="hero-container">
+            <div class="hero-title">
+                <h1 class="brand-name">
+                    <span class="first-initial">H.</span>
+                    <span class="last-name">MARZEC</span>
+                </h1>
+            </div>
+            <div class="hero-meta">
+                <span>EST. MCMLXXXIX / VOLUME 01</span>
+            </div>
         </div>
     </header>
 
-    <section id="work" class="gallery">
-        <div class="gallery-item large" data-label="Service 01">
-            <h2>Executive Consulting</h2>
-            <p>Elevating brand narratives through meticulous structural analysis.</p>
-        </div>
-        <div class="gallery-item small offset" data-label="Service 02">
-            <h2>Creative Direction</h2>
-            <p>Visual storytelling for the modern professional.</p>
-        </div>
-        <div class="gallery-item medium" data-label="Service 03">
-            <h2>Project Curation</h2>
-            <p>Managing complexity with a minimalist philosophy.</p>
+    <section id="about" class="exposition">
+        <div class="exposition-grid">
+            <div class="column-left">
+                <h2 class="section-tag">EXPOSITION</h2>
+            </div>
+            <div class="column-right">
+                <p class="anchor-text">
+                    Emerging technologies are adopted — or abandoned — based on human behaviour.
+                </p>
+                
+                <div class="biography-layout">
+                    <div class="biography-text">
+                        <p class="intro-statement">
+                            Helen Marzec works at the intersection of behavioural science, narrative strategy, and venture markets — designing the conditions under which new technologies are trusted, adopted, and financed.
+                        </p>
+                        
+                        <p>Her practice applies behavioural economics and evidence-driven analysis to the moments that determine commercial outcomes: how users form interpretations of value, how investors calibrate risk in high-uncertainty categories, and how markets construct belief around emerging systems. She translates that intelligence into positioning, narrative architecture, and strategic framing — bridging the gap between technical capability and market perception.</p>
+                        
+                        <p>Her background spans venture capital due diligence, neuroscience-based consumer research, and startup strategy across biotech, healthtech, Web3, and identity infrastructure. She has worked with early-stage ventures, growth-stage platforms, and private investment vehicles across North America, Europe, Asia, and Latin America. Based in Canada and licensed to work across the European Union, she operates internationally across venture-backed ecosystems.</p>
+                        
+                        <div class="current-focus-block">
+                            <span class="placard-sub">STATUS / 2026</span>
+                            <p>Supporting strategy and operational development at <strong>HAND</strong> — an identity infrastructure initiative for the global cultural economy. A 2025 SXSW Pitch Finalist, HAND has been featured in the <em>Wall Street Journal</em> and a special report by <em>Variety VIP+</em>.</p>
+                        </div>
+                    </div>
+
+                    <div class="portrait-gallery-wrap">
+                        <div class="portrait-frame">
+                            <img src="portrait.jpg" alt="Helen Marzec" class="main-portrait">
+                            <div class="frame-details">
+                                <span>FOLIO / 01</span>
+                                <span>MCMASTER / PARIS CITÉ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="about" class="resume-split">
-        <div class="resume-intro">
-            <h2>THE<br>ARCHIVE</h2>
+    <section id="writing" class="writing-minimal">
+        <div class="writing-header">
+            <h2 class="section-tag">WRITING</h2>
         </div>
-        <div class="resume-details">
-            <div class="exp-row">
-                <span class="year">2022 — PRES</span>
-                <span class="role">Lead Consultant</span>
-                <span class="org">Global Strategy Firm</span>
+        <div class="writing-row">
+            <a href="https://medium.com" target="_blank" class="writing-item">
+                <span class="writing-num">01</span>
+                <h3>Evaluating Pre-Revenue Startups</h3>
+                <span class="writing-meta">STRATEGY ↗</span>
+            </a>
+        </div>
+        <div class="writing-row">
+            <a href="https://medium.com" target="_blank" class="writing-item">
+                <span class="writing-num">02</span>
+                <h3>Art & Venture Capital</h3>
+                <span class="writing-meta">AESTHETICS ↗</span>
+            </a>
+        </div>
+    </section>
+
+    <section id="cv" class="archive-section">
+        <div class="archive-grid">
+            <div class="column-left">
+                <h2 class="section-tag">ARCHIVE</h2>
             </div>
-            <div class="exp-row">
-                <span class="year">2019 — 2022</span>
-                <span class="role">Creative Lead</span>
-                <span class="org">Studio Minimal</span>
-            </div>
-            <div class="exp-row">
-                <span class="year">2017 — 2019</span>
-                <span class="role">Independent Curator</span>
-                <span class="org">Freelance</span>
+            
+            <div class="archive-content">
+                <div class="archive-group">
+                    <h3 class="archive-category">EXPERIENCE</h3>
+                    <div class="archive-item"><span>2025</span><strong>HAND</strong> <small>SXSW / WSJ / VARIETY</small></div>
+                    <div class="archive-item"><span>2024</span><strong>STEEL DAO / HALOHEALTH</strong></div>
+                    <div class="archive-item"><span>2023</span><strong>DNA CAPITAL PARTNERS / ESURGI</strong></div>
+                    <div class="archive-item"><span>2022</span><strong>BIOCONNEXUS CAPITAL</strong></div>
+                    <div class="archive-item"><span>2021</span><strong>FUTURE VC</strong></div>
+                </div>
+
+                <div class="archive-group">
+                    <h3 class="archive-category">RECOGNITION</h3>
+                    <div class="archive-item award-item">
+                        <span>2019</span>
+                        <div class="item-detail">
+                            <strong>MIEM Excellence Initiative Laureate</strong>
+                            <p>IDEX / UNIVERSITÉ PARIS CITÉ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="archive-group">
+                    <h3 class="archive-category">ACADEMIC</h3>
+                    <div class="archive-item">
+                        <span>2021</span>
+                        <div class="item-detail">
+                            <strong>M.A. (High Honours)</strong>
+                            <p>UNIVERSITÉ PARIS CITÉ — PARIS, FRANCE</p>
+                        </div>
+                    </div>
+                    <div class="archive-item">
+                        <span>2018</span>
+                        <div class="item-detail">
+                            <strong>B.SC. (HONOURS)</strong>
+                            <p>MCMASTER UNIVERSITY — ONTARIO, CANADA</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact">
-        <a href="mailto:hello@domain.com" class="big-contact">Let's Talk.</a>
-        <div class="
+    <footer class="luxury-footer">
+        <div class="footer-wrap">
+            <a href="mailto:helen@example.com" class="footer-cta">CONTACT ↗</a>
+        </div>
+        <div class="footer-fine-print">
+            <span>© 2026 HELEN MARZEC</span>
+            <span>DATA CURATION & BEHAVIOURAL SCIENCE</span>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('waveCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, lines = [];
+
+        function init() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            lines = [];
+            for (let i = 0; i < 25; i++) { // Number of wave lines
+                lines.push({
+                    y: height * 0.5,
+                    length: width,
+                    amplitude: 20 + i * 2, // How tall the wave is
+                    speed: 0.01 + i * 0.001, // How fast it moves
+                    phase: i * 0.2 // Starting offset
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.strokeStyle = 'rgba(232, 230, 227, 0.04)'; // Subtle Silk Line Color
+            ctx.lineWidth = 0.5;
+
+            lines.forEach((line, index) => {
+                ctx.beginPath();
+                for (let x = 0; x < width; x += 2) {
+                    const y = line.y + Math.sin(x * 0.002 + line.phase) * line.amplitude;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                line.phase += line.speed; // Animate the phase
+            });
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        draw();
+    </script>
+</body>
+</html>
