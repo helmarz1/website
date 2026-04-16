@@ -1,0 +1,94 @@
+:root {
+    --bg: #0d0d0d;
+    --text: #e6e3df; /* Warm White */
+    --accent: #8a8a8a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Texture Overlay */
+.grain {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Static_Noise_Texture.png');
+    opacity: 0.03; pointer-events: none; z-index: 999;
+}
+
+/* Nav Styling */
+.elevated-nav {
+    display: flex; justify-content: space-between; padding: 2rem;
+    font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+    position: fixed; width: 100%; z-index: 100;
+}
+.nav-right a { margin-left: 20px; text-decoration: none; color: var(--text); opacity: 0.6; transition: 0.3s; }
+.nav-right a:hover { opacity: 1; }
+
+/* Hero Styling */
+.hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 10%; }
+.hero-text h1 { 
+    font-family: 'Bodoni Moda', serif; font-size: clamp(4rem, 10vw, 12rem); 
+    line-height: 0.85; text-transform: uppercase; font-weight: 300; 
+}
+.italic { font-style: italic; padding-left: 5vw; }
+.hero-subtext { margin-top: 4rem; max-width: 400px; font-size: 0.9rem; color: var(--accent); }
+
+/* Asymmetric Gallery */
+.gallery { padding: 10rem 10%; display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+
+.gallery-item { 
+    background: #151515; padding: 4rem; position: relative; 
+    border-bottom: 1px solid #333; transition: background 0.5s;
+}
+.gallery-item:hover { background: #1a1a1a; }
+.gallery-item::before { 
+    content: attr(data-label); position: absolute; top: 1.5rem; left: 1.5rem; 
+    font-size: 0.6rem; letter-spacing: 2px; color: var(--accent);
+}
+
+.large { grid-column: 1 / 8; }
+.small { grid-column: 9 / 13; margin-top: 5rem; }
+.medium { grid-column: 3 / 10; margin-top: -2rem; }
+
+.gallery-item h2 { font-family: 'Bodoni Moda', serif; font-size: 2.5rem; margin-bottom: 1rem; }
+
+/* Resume Split Section */
+.resume-split { display: flex; padding: 10rem 10%; border-top: 1px solid #222; }
+.resume-intro { flex: 1; }
+.resume-intro h2 { font-family: 'Bodoni Moda', serif; font-size: 4rem; line-height: 1; }
+.resume-details { flex: 2; }
+.exp-row { 
+    display: grid; grid-template-columns: 1fr 2fr 1fr; 
+    padding: 2rem 0; border-bottom: 1px solid #222; 
+    font-size: 0.9rem; 
+}
+.year { color: var(--accent); }
+.role { font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Big Contact Footer */
+footer { padding: 10rem 10% 5rem 10%; text-align: center; }
+.big-contact { 
+    font-family: 'Bodoni Moda', serif; font-size: clamp(3rem, 15vw, 15rem); 
+    text-decoration: none; color: var(--text); border-bottom: 1px solid var(--text);
+    transition: 0.5s; display: inline-block;
+}
+.big-contact:hover { color: var(--accent); border-color: var(--accent); }
+
+.footer-bottom { 
+    display: flex; justify-content: space-between; margin-top: 10rem; 
+    font-size: 0.6rem; letter-spacing: 2px; color: var(--accent);
+}
+
+/* Simple Mobile Fix */
+@media (max-width: 768px) {
+    .gallery { display: block; }
+    .gallery-item { margin-bottom: 2rem; }
+    .resume-split { flex-direction: column; }
+    .exp-row { grid-template-columns: 1fr; gap: 10px; }
+}
