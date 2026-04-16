@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H. MARZEC — STRATEGY</title>
+    <title>HELEN MARZEC — STRATEGY</title>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@100;200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,8 +16,7 @@
     </div>
 
     <nav class="luxury-nav">
-        <div class="nav-brand">H. MARZEC</div>
-        <div class="nav-status">BEHAVIOURAL SCIENCE & VC STRATEGY</div>
+        <div class="nav-brand">HELEN MARZEC</div>
         <div class="nav-links">
             <a href="#about">EXPOSITION</a>
             <a href="#writing">WRITING</a>
@@ -30,12 +29,9 @@
         <div class="hero-container">
             <div class="hero-title">
                 <h1 class="brand-name">
-                    <span class="first-initial">H.</span>
+                    <span class="first-initial">HELEN</span>
                     <span class="last-name">MARZEC</span>
                 </h1>
-            </div>
-            <div class="hero-meta">
-                <span>EST. MCMLXXXIX / VOLUME 01</span>
             </div>
         </div>
     </header>
@@ -70,8 +66,7 @@
                         <div class="portrait-frame">
                             <img src="portrait.jpg" alt="Helen Marzec" class="main-portrait">
                             <div class="frame-details">
-                                <span>FOLIO / 01</span>
-                                <span>MCMASTER / PARIS CITÉ</span>
+                                <span>MCMASTER / Université Paris Cité</span>
                             </div>
                         </div>
                     </div>
@@ -129,18 +124,31 @@
 
                 <div class="archive-group">
                     <h3 class="archive-category">ACADEMIC</h3>
+                    
                     <div class="archive-item">
                         <span>2021</span>
                         <div class="item-detail">
                             <strong>M.A. (High Honours)</strong>
-                            <p>UNIVERSITÉ PARIS CITÉ — PARIS, FRANCE</p>
+                            <p>UNIVERSITÉ PARIS CITÉ</p>
+                            <p>UNIVERSITÉ PARIS 1 PANTHÉON-SORBONNE</p>
+                            <p>PARIS SCHOOL OF ECONOMICS</p>
                         </div>
                     </div>
+                    
                     <div class="archive-item">
                         <span>2018</span>
                         <div class="item-detail">
                             <strong>B.SC. (HONOURS)</strong>
-                            <p>MCMASTER UNIVERSITY — ONTARIO, CANADA</p>
+                            <p class="minor-text">MINOR IN BIOCHEMISTRY</p>
+                            <p>MCMASTER UNIVERSITY</p>
+                        </div>
+                    </div>
+                    
+                    <div class="archive-item">
+                        <span>2018</span>
+                        <div class="item-detail">
+                            <strong>B.A.</strong>
+                            <p>MCMASTER UNIVERSITY</p>
                         </div>
                     </div>
                 </div>
@@ -167,23 +175,23 @@
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
             lines = [];
-            for (let i = 0; i < 25; i++) { // Number of wave lines
+            for (let i = 0; i < 25; i++) {
                 lines.push({
                     y: height * 0.5,
                     length: width,
-                    amplitude: 20 + i * 2, // How tall the wave is
-                    speed: 0.01 + i * 0.001, // How fast it moves
-                    phase: i * 0.2 // Starting offset
+                    amplitude: 20 + i * 2,
+                    speed: 0.01 + i * 0.001,
+                    phase: i * 0.2
                 });
             }
         }
 
         function draw() {
             ctx.clearRect(0, 0, width, height);
-            ctx.strokeStyle = 'rgba(232, 230, 227, 0.04)'; // Subtle Silk Line Color
+            ctx.strokeStyle = 'rgba(232, 230, 227, 0.04)';
             ctx.lineWidth = 0.5;
 
-            lines.forEach((line, index) => {
+            lines.forEach((line) => {
                 ctx.beginPath();
                 for (let x = 0; x < width; x += 2) {
                     const y = line.y + Math.sin(x * 0.002 + line.phase) * line.amplitude;
@@ -191,7 +199,7 @@
                     else ctx.lineTo(x, y);
                 }
                 ctx.stroke();
-                line.phase += line.speed; // Animate the phase
+                line.phase += line.speed;
             });
             requestAnimationFrame(draw);
         }
