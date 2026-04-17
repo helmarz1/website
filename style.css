@@ -61,8 +61,14 @@ html { scroll-behavior: smooth; }
 .nav-brand:hover { transform: scale(1.02); }
 .nav-icon-img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; flex-shrink: 0; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
 .nav-brand:hover .nav-icon-img { transform: rotate(15deg); }
+.nav-links { display: flex; align-items: center; }
 .nav-links a { text-decoration: none; color: var(--text); margin-left: 3rem; opacity: 0.5; transition: all 0.4s ease; }
 .nav-links a:hover { opacity: 1; letter-spacing: 0.45em; }
+
+/* Social Icon in Nav */
+.nav-social-link { display: flex; align-items: center; }
+.social-icon-img { width: 18px; height: 18px; border-radius: 50%; object-fit: cover; filter: grayscale(1) invert(1); opacity: 0.7; transition: all 0.4s ease; }
+.nav-links a:hover .social-icon-img { opacity: 1; filter: grayscale(0) invert(0); transform: scale(1.1); }
 
 /* Grid Consistency */
 .exposition-grid, .capabilities-grid, .writing-grid, .archive-grid { display: grid; grid-template-columns: 1.2fr 3.8fr; gap: 4rem; }
@@ -88,9 +94,11 @@ html { scroll-behavior: smooth; }
 .main-portrait { width: 100%; filter: grayscale(20%); transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease; }
 .main-portrait:hover { transform: scale(1.08); filter: grayscale(0%); }
 
-/* Status */
+/* Status & SXSW */
 .current-focus-block { border-top: 1px solid var(--line); padding-top: 3rem; margin-top: 3rem; clear: both; }
 .placard-sub { font-size: 0.55rem; letter-spacing: 0.5em; color: var(--accent); margin-bottom: 1.5rem; display: block; }
+.sxsw-container { display: flex; align-items: flex-start; gap: 1.5rem; margin-top: 1rem; }
+.sxsw-logo-img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); flex-shrink: 0; filter: grayscale(1); opacity: 0.6; }
 
 /* Focus Hover Items */
 .focus-list { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
@@ -166,4 +174,6 @@ html { scroll-behavior: smooth; }
     .archive-item span { width: 100%; margin-bottom: 0.5rem; }
     
     .footer-fine-print { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    
+    .sxsw-container { flex-direction: column; gap: 1rem; }
 }
