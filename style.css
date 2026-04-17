@@ -7,12 +7,6 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
 
-/* Motion / Keyframes */
-@keyframes reveal {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 body { 
     background: var(--bg); 
     color: var(--text); 
@@ -20,6 +14,11 @@ body {
     font-weight: 200; 
     line-height: 1.6;
     overflow-x: hidden;
+    letter-spacing: 0.015em;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 .grain { 
@@ -29,81 +28,170 @@ body {
 }
 
 /* Navigation */
-.luxury-nav { display: flex; justify-content: space-between; padding: 2.5rem 10%; position: fixed; width: 100%; z-index: 100; font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; }
-.nav-brand { font-family: 'Bodoni Moda', serif; font-size: 1.1rem; }
+.luxury-nav { display: flex; justify-content: space-between; align-items: center; padding: 2.5rem 10%; position: fixed; width: 100%; z-index: 100; font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; }
+.nav-brand { font-family: 'Bodoni Moda', serif; font-size: 1.1rem; display: flex; align-items: center; gap: 0.8rem; }
+
+/* Larger Brand Icon - NO grayscale filter */
+.nav-icon-img { 
+    width: 24px; 
+    height: 24px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    flex-shrink: 0; 
+}
+
 .nav-links a { text-decoration: none; color: var(--text); margin-left: 3rem; opacity: 0.5; transition: 0.4s; }
 .nav-links a:hover { opacity: 1; }
 
+/* Global Grid Consistency */
+.exposition-grid, .capabilities-grid, .writing-grid, .archive-grid { 
+    display: grid; 
+    grid-template-columns: 1.2fr 3.8fr; 
+    gap: 4rem; 
+}
+
 /* Section Spacing */
-.exposition { 
-    padding: 12rem 10% 6rem 10%; 
-    border-top: none; 
-}
+.exposition { padding: 12rem 10% 6rem 10%; }
+.capabilities-section, .writing-minimal, .archive-section { padding: 6rem 10%; border-top: 1px solid var(--line); }
 
-.writing-minimal, .archive-section { 
-    padding: 6rem 10%; 
-    border-top: 1px solid var(--line); 
-}
-
-.exposition-grid, .archive-grid { display: grid; grid-template-columns: 1fr 3fr; gap: 5rem; }
 .section-tag { font-size: 0.6rem; letter-spacing: 0.6em; color: var(--accent); text-transform: uppercase; position: sticky; top: 7rem; }
-.anchor-text { font-family: 'Bodoni Moda', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.3; margin-bottom: 4rem; font-style: italic; color: #fff; }
+.section-tag-writing { top: 9.3rem; }
 
-.biography-layout { display: block; }
-.biography-text { font-size: 0.95rem; color: var(--accent); }
-.intro-statement { font-size: 1.2rem; color: var(--text); margin-bottom: 2.5rem; }
-.biography-text p { margin-bottom: 1.5rem; }
+.anchor-text { 
+    font-family: 'Bodoni Moda', serif; 
+    font-size: clamp(2rem, 3.5vw, 2.8rem); 
+    line-height: 1.3; 
+    margin-bottom: 4rem; 
+    font-style: italic; 
+    color: #fff; 
+    max-width: 100%; 
+    font-weight: 300;
+    letter-spacing: -0.02em;
+}
 
-/* Current Focus */
-.current-focus-block { border-top: 1px solid var(--line); padding-top: 3rem; margin-top: 3rem; }
+/* Thesis Alignment */
+.biography-layout { display: block; width: 100%; }
+.biography-text { font-size: 0.95rem; color: var(--accent); max-width: 100%; }
+.intro-statement { font-size: 1.25rem; color: var(--text); margin-bottom: 2rem; line-height: 1.5; }
+.biography-text p { margin-bottom: 1.5rem; text-align: justify; }
+
+/* Inline Portrait Alignment */
+.inline-portrait-wrap { 
+    float: right; 
+    width: 35%; 
+    margin-left: 3rem; 
+    margin-bottom: 2rem; 
+    overflow: hidden; 
+}
+
+/* Portrait - NO filters, just the scale animation */
+.main-portrait { 
+    width: 100%; 
+    filter: none; 
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+.main-portrait:hover { 
+    transform: scale(1.05);
+}
+
+/* Status Block */
+.current-focus-block { border-top: 1px solid var(--line); padding-top: 3rem; margin-top: 3rem; clear: both; }
 .placard-sub { font-size: 0.55rem; letter-spacing: 0.5em; color: var(--accent); margin-bottom: 1.5rem; display: block; }
 
-/* Portrait Gallery - Now on Left */
-.portrait-gallery-wrap { margin-top: 4rem; }
-.portrait-frame { padding: 0; }
-.main-portrait { width: 100%; filter: grayscale(1); transition: 0.8s filter ease; }
-.main-portrait:hover { filter: grayscale(0); }
+/* Focus List Styling */
+.focus-list { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 3rem 4rem; 
+}
+.focus-item { border-bottom: 1px solid var(--line); padding-bottom: 2rem; }
+.focus-title { 
+    display: block; 
+    font-weight: 300; 
+    letter-spacing: 0.05em; 
+    color: var(--text); 
+    margin-bottom: 0.8rem; 
+    font-size: 1.1rem; 
+    text-transform: uppercase; 
+}
+.focus-item p { font-size: 0.85rem; color: var(--accent); line-height: 1.8; }
 
 /* Writing Items */
-.writing-item { display: flex; justify-content: space-between; padding: 2.5rem 0; text-decoration: none; color: var(--text); border-bottom: 1px solid var(--line); transition: 0.4s; }
-.writing-item:hover { padding-left: 1.5rem; background: rgba(255,255,255,0.01); }
-.writing-num { font-size: 0.6rem; color: var(--accent); width: 60px; padding-top: 0.8rem; }
-.writing-item h3 { font-family: 'Bodoni Moda', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 300; transition: 0.4s; }
-.writing-intro { font-size: 0.85rem; color: var(--accent); margin-top: 1rem; max-width: 600px; line-height: 1.8; }
-.writing-meta { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--accent); padding-top: 0.8rem; }
+.writing-item { 
+    display: flex; 
+    align-items: flex-start; 
+    padding: 2.5rem 0; 
+    text-decoration: none; 
+    color: var(--text); 
+    border-bottom: 1px solid var(--line); 
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+.writing-item:hover { 
+    transform: translateX(20px);
+}
+.writing-num { font-size: 0.6rem; color: var(--accent); width: 40px; padding-top: 0.8rem; flex-shrink: 0; }
 
-/* Archive */
+.writing-thumb-wrap { 
+    width: 80px; 
+    height: 80px; 
+    margin-right: 2rem; 
+    flex-shrink: 0; 
+    margin-top: 0.5rem; 
+    overflow: hidden; 
+}
+
+/* Writing Thumbnails - NO filters, just scale animation */
+.writing-thumb { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    filter: none; 
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.writing-item:hover .writing-thumb {
+    transform: scale(1.05);
+}
+
+.writing-content { flex-grow: 1; }
+.writing-item h3 { font-family: 'Bodoni Moda', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 300; }
+.writing-intro { font-size: 0.85rem; color: var(--accent); margin-top: 1rem; max-width: 600px; line-height: 1.8; }
+.writing-meta { font-size: 0.65rem; letter-spacing: 0.25em; color: var(--accent); padding-top: 1rem; flex-shrink: 0; margin-left: 2rem; }
+
+/* Archive Styling */
 .archive-content { display: flex; flex-direction: column; gap: 4rem; }
 .archive-category { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--accent); margin-bottom: 2rem; text-transform: uppercase; }
 .archive-item { display: flex; align-items: flex-start; padding: 2rem 0; border-bottom: 1px solid var(--line); font-size: 1.1rem; }
 .archive-item span { width: 120px; color: var(--accent); font-family: monospace; font-size: 0.75rem; flex-shrink: 0; }
 .item-detail { flex-grow: 1; }
-.org-name, .archive-item strong { display: block; font-weight: 300; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.5rem; font-size: 1.2rem; }
+.org-name, .archive-item strong { display: block; font-weight: 300; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.5rem; font-size: 1.1rem; }
 
-/* Academic & Recognition Sub-styles */
 .academic-sub-style p { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.4rem; font-weight: 300; }
-.recognition-title { font-family: 'Bodoni Moda', serif !important; font-size: 1.6rem !important; font-style: italic !important; text-transform: none !important; color: #fff !important; }
-.recognition-description { font-size: 0.9rem; color: var(--accent); margin-top: 1.5rem; max-width: 650px; line-height: 1.8; }
+.recognition-title { font-family: 'Bodoni Moda', serif !important; font-size: 1.6rem !important; font-style: italic !important; color: #fff !important; }
+.recognition-description { font-size: 0.9rem; color: var(--accent); margin-top: 1.5rem; max-width: 700px; line-height: 1.8; }
 .award-meta-style { font-size: 0.65rem; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-top: 1.5rem; }
 
 /* Footer */
 .luxury-footer { padding: 8rem 10% 4rem 10%; border-top: 1px solid var(--line); }
 .footer-cta { 
     font-family: 'Bodoni Moda', serif; 
-    font-size: clamp(2rem, 5vw, 3.5rem); 
+    font-size: clamp(2.2rem, 6vw, 4rem); 
     text-decoration: none; 
     color: var(--text); 
     font-weight: 300; 
     font-style: italic; 
     line-height: 1; 
     transition: 0.5s; 
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
 }
 .footer-cta:hover { color: var(--accent); padding-left: 1rem; }
 .footer-fine-print { display: flex; justify-content: space-between; margin-top: 6rem; font-size: 0.6rem; letter-spacing: 0.4em; color: var(--accent); text-transform: uppercase; }
 
 @media (max-width: 1024px) {
-    .biography-layout { grid-template-columns: 1fr; }
-    .archive-grid, .exposition-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .portrait-gallery-wrap { max-width: 300px; margin-top: 2rem; }
+    .exposition-grid, .capabilities-grid, .writing-grid, .archive-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .focus-list { grid-template-columns: 1fr; gap: 2rem; }
+    .inline-portrait-wrap { float: none; width: 100%; margin-left: 0; margin-top: 2rem; }
+    .biography-text p { text-align: left; }
+    .writing-item { flex-wrap: wrap; }
+    .writing-meta { width: 100%; margin-left: 0; margin-top: 1rem; }
+    .section-tag-writing { top: 7rem; }
 }
