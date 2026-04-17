@@ -25,10 +25,7 @@ body {
 /* Navigation */
 .luxury-nav { display: flex; justify-content: space-between; align-items: center; padding: 2.5rem 10%; position: fixed; width: 100%; z-index: 100; font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; }
 .nav-brand { font-family: 'Bodoni Moda', serif; font-size: 1.1rem; display: flex; align-items: center; gap: 0.8rem; }
-
-/* Navigation Icon Image */
 .nav-icon-img { width: 12px; height: 12px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
-
 .nav-links a { text-decoration: none; color: var(--text); margin-left: 3rem; opacity: 0.5; transition: 0.4s; }
 .nav-links a:hover { opacity: 1; }
 
