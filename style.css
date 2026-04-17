@@ -66,6 +66,9 @@ html {
     max-width: 100%; 
     font-weight: 300;
     letter-spacing: -0.02em;
+    /* Prevent character clipping on some mobile browsers */
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
 /* Thesis Alignment */
@@ -196,7 +199,7 @@ html {
 
 @media (max-width: 768px) {
     .luxury-nav { padding: 1.5rem 5%; }
-    .nav-links { display: none; } /* Hide complex nav on mobile for minimalism or use a burger menu if needed */
+    .nav-links { display: none; }
     
     .exposition, .capabilities-section, .writing-minimal, .archive-section, .luxury-footer { 
         padding-left: 5%; 
@@ -205,7 +208,12 @@ html {
     
     .exposition { padding-top: 8rem; }
     
-    .anchor-text { font-size: 1.8rem; margin-bottom: 2rem; }
+    .anchor-text { 
+        font-size: 1.8rem; 
+        margin-bottom: 2rem;
+        /* Ensure specific characters like dashes don't trigger unwanted wrapping */
+        word-spacing: 0.1em;
+    }
     
     .writing-item h3 { font-size: 1.5rem; }
     .writing-thumb-wrap { width: 60px; height: 60px; margin-right: 1rem; }
