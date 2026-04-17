@@ -31,13 +31,14 @@ html {
 .luxury-nav { display: flex; justify-content: space-between; align-items: center; padding: 2.5rem 10%; position: fixed; width: 100%; z-index: 100; font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; }
 .nav-brand { font-family: 'Bodoni Moda', serif; font-size: 1.1rem; display: flex; align-items: center; gap: 0.8rem; }
 
-/* Large Brand Icon - No grayscale or filters */
+/* Large Brand Icon - Inverted to White */
 .nav-icon-img { 
-    width: 24px; 
-    height: 24px; 
+    width: 32px; /* Increased size */
+    height: 32px; 
     border-radius: 50%; 
     object-fit: cover; 
     flex-shrink: 0; 
+    filter: invert(1); /* Turns black icon to white */
 }
 
 .nav-links a { text-decoration: none; color: var(--text); margin-left: 3rem; opacity: 0.5; transition: 0.4s; }
@@ -84,14 +85,14 @@ html {
     overflow: hidden; 
 }
 
-/* Portrait Styling - NO grayscale, NO brightness adjustments */
+/* Portrait - Scale animation preserved, NO grayscale */
 .main-portrait { 
     width: 100%; 
-    filter: none; /* Grayscale removed */
+    filter: none; 
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
 }
 .main-portrait:hover { 
-    transform: scale(1.05); /* Animation preserved */
+    transform: scale(1.05);
 }
 
 /* Status Block */
@@ -140,16 +141,16 @@ html {
     overflow: hidden; 
 }
 
-/* Writing Thumbnails - NO grayscale, NO filters */
+/* Writing Thumbnails - Scale animation preserved, NO grayscale */
 .writing-thumb { 
     width: 100%; 
     height: 100%; 
     object-fit: cover; 
-    filter: none; /* Grayscale removed */
+    filter: none; 
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .writing-item:hover .writing-thumb {
-    transform: scale(1.05); /* Animation preserved */
+    transform: scale(1.05);
 }
 
 .writing-content { flex-grow: 1; }
