@@ -67,7 +67,7 @@ html { scroll-behavior: smooth; }
 
 /* Social Icon in Nav */
 .nav-social-link { display: inline-flex !important; align-items: center; vertical-align: middle; }
-.social-icon-img { width: 12px; height: 12px; border-radius: 50%; object-fit: cover; filter: grayscale(1) brightness(2); opacity: 0.6; transition: all 0.4s ease; margin-bottom: 2px; }
+.social-icon-img { width: 12px; height: 12px; object-fit: cover; filter: grayscale(1) brightness(2); opacity: 0.6; transition: all 0.4s ease; margin-bottom: 2px; }
 .nav-links a:hover .social-icon-img { opacity: 1; transform: scale(1.15); filter: grayscale(0) brightness(1); }
 
 /* Grid Consistency */
