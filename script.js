@@ -5,13 +5,14 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. INTELLIGENT NAVIGATION (Active State Highlighter)
+    // 1. INTELLIGENT NAVIGATION (Fixed Active State Logic)
     const navLinks = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('section[id]');
 
+    // Adjusted rootMargin to ensure the highlight triggers exactly when the section title is near the top
     const navObserverOptions = {
-        threshold: 0.3,
-        rootMargin: "-10% 0px -70% 0px" 
+        threshold: 0,
+        rootMargin: "-20% 0px -75% 0px" 
     };
 
     const navObserver = new IntersectionObserver((entries) => {
@@ -19,9 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
                 navLinks.forEach(link => {
-                    // Highlights the current section link, dims others
-                    link.style.opacity = link.getAttribute('href') === `#${id}` ? '1' : '0.5';
-                    link.style.letterSpacing = link.getAttribute('href') === `#${id}` ? '0.45em' : '0.35em';
+                    const isCurrent = link.getAttribute('href') === `#${id}`;
+                    link.style.opacity = isCurrent ? '1' : '0.5';
+                    link.style.letterSpacing = isCurrent ? '0.45em' : '0.35em';
                 });
             }
         });
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // 3. REFINED NATURAL TYPEWRITER EFFECT
+    // 3. REFINED NATURAL TYPEWRITER EFFECT (Preserved)
     const typewriterTarget = document.querySelector('.anchor-text');
     if (typewriterTarget) {
         const fullText = typewriterTarget.innerHTML;
@@ -53,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i < fullText.length) {
                 let char = fullText.charAt(i);
                 
-                // Instantly render HTML tags (like <span>) to maintain structure
                 if (char === '<') {
                     const tagEnd = fullText.indexOf('>', i) + 1;
                     typewriterTarget.innerHTML += fullText.substring(i, tagEnd);
@@ -65,20 +65,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 typewriterTarget.innerHTML += char;
                 i++;
 
-                // NATURAL CADENCE: Variable speed + Punctuation pauses
-                let delay = Math.floor(Math.random() * 30) + 25; // Random speed between 25ms-55ms
+                let delay = Math.floor(Math.random() * 30) + 25; 
                 
                 if (char === '.' || char === '—' || char === '–') {
-                    delay = 600; // Deep pause for dashes and periods
+                    delay = 600; 
                 } else if (char === ',') {
-                    delay = 300; // Brief pause for commas
+                    delay = 300; 
                 }
 
                 setTimeout(type, delay);
             }
         }
-        
-        // Initial delay before typing begins
         setTimeout(type, 1200);
     }
 });
