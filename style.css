@@ -31,10 +31,10 @@ html {
 .luxury-nav { display: flex; justify-content: space-between; align-items: center; padding: 2.5rem 10%; position: fixed; width: 100%; z-index: 100; font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; }
 .nav-brand { font-family: 'Bodoni Moda', serif; font-size: 1.1rem; display: flex; align-items: center; gap: 0.8rem; }
 
-/* 3. Circular Masking for the Brand Icon */
+/* Enhanced Brand Icon - Larger size and no grayscale filter */
 .nav-icon-img { 
-    width: 12px; 
-    height: 12px; 
+    width: 24px; /* Size increased */
+    height: 24px; 
     border-radius: 50%; 
     object-fit: cover; 
     flex-shrink: 0; 
@@ -43,7 +43,7 @@ html {
 .nav-links a { text-decoration: none; color: var(--text); margin-left: 3rem; opacity: 0.5; transition: 0.4s; }
 .nav-links a:hover { opacity: 1; }
 
-/* Global Grid Consistency */
+/* Grid Structure */
 .exposition-grid, .capabilities-grid, .writing-grid, .archive-grid { 
     display: grid; 
     grid-template-columns: 1.2fr 3.8fr; 
@@ -55,8 +55,6 @@ html {
 .capabilities-section, .writing-minimal, .archive-section { padding: 6rem 10%; border-top: 1px solid var(--line); }
 
 .section-tag { font-size: 0.6rem; letter-spacing: 0.6em; color: var(--accent); text-transform: uppercase; position: sticky; top: 7rem; }
-
-/* Aligned Section Tag for Writing */
 .section-tag-writing { top: 9.3rem; }
 
 .anchor-text { 
@@ -77,17 +75,16 @@ html {
 .intro-statement { font-size: 1.25rem; color: var(--text); margin-bottom: 2rem; line-height: 1.5; }
 .biography-text p { margin-bottom: 1.5rem; text-align: justify; }
 
-/* Inline Portrait Alignment & 2. Subtle Scale Motion Container */
+/* Portrait Alignment & Scale Motion Container */
 .inline-portrait-wrap { 
     float: right; 
     width: 35%; 
     margin-left: 3rem; 
     margin-bottom: 2rem; 
-    overflow: hidden; /* For scale motion */
+    overflow: hidden; 
 }
-.portrait-frame { padding: 0; }
 
-/* 1. Editorial Filter & 2. Scale Motion for Portrait */
+/* Editorial Filter & Scale Motion for Portrait (Maintained) */
 .main-portrait { 
     width: 100%; 
     filter: grayscale(1) brightness(0.9) contrast(1.1); 
@@ -136,7 +133,6 @@ html {
 }
 .writing-num { font-size: 0.6rem; color: var(--accent); width: 40px; padding-top: 0.8rem; flex-shrink: 0; }
 
-/* 2. Scale Motion Container for Thumbnails */
 .writing-thumb-wrap { 
     width: 80px; 
     height: 80px; 
@@ -146,7 +142,7 @@ html {
     overflow: hidden; 
 }
 
-/* 1. Editorial Filter & 2. Scale Motion for Writing Thumbnails */
+/* Editorial Filter & Scale Motion for Writing Thumbnails (Maintained) */
 .writing-thumb { 
     width: 100%; 
     height: 100%; 
