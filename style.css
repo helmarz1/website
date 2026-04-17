@@ -80,8 +80,8 @@ html { scroll-behavior: smooth; }
 .section-tag { font-size: 0.6rem; letter-spacing: 0.6em; color: var(--accent); text-transform: uppercase; position: sticky; top: 7rem; }
 .section-tag-writing { top: 9.3rem; }
 
-/* Anchor Text */
-.anchor-text { font-family: 'Bodoni Moda', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.3; margin-bottom: 4rem; font-style: italic; color: #fff; max-width: 100%; font-weight: 300; letter-spacing: -0.02em; }
+/* Anchor Text & Typewriter Prep */
+.anchor-text { font-family: 'Bodoni Moda', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.3; margin-bottom: 4rem; font-style: italic; color: #fff; max-width: 100%; font-weight: 300; letter-spacing: -0.02em; min-height: 4em; opacity: 0; }
 .stable-dash { display: inline-block; font-family: 'Inter', sans-serif; font-style: normal; text-align: center; padding: 0 0.25em; vertical-align: middle; }
 
 /* Biography */
