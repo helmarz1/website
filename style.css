@@ -5,13 +5,12 @@
     --line: rgba(244, 241, 238, 0.04);
 }
 
-/* Base Overrides for Mobile Safety */
 * { 
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
     -webkit-font-smoothing: antialiased; 
-    max-width: 100vw; /* Prevent horizontal overflow */
+    max-width: 100vw; 
 }
 
 body { 
@@ -30,6 +29,21 @@ html { scroll-behavior: smooth; }
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Static_Noise_Texture.png'); 
     opacity: 0.02; pointer-events: none; z-index: 999; 
+}
+
+/* GHOSTED MONOGRAM */
+.ghost-monogram {
+    position: fixed;
+    top: 15vh;
+    left: 5vw;
+    font-family: 'Pinyon Script', cursive;
+    font-size: 45vw; 
+    color: rgba(244, 241, 238, 0.025); 
+    pointer-events: none;
+    z-index: -1;
+    line-height: 1;
+    user-select: none;
+    white-space: nowrap;
 }
 
 /* Reveal Entrance */
@@ -99,7 +113,6 @@ html { scroll-behavior: smooth; }
 .writing-content { flex-grow: 1; }
 .writing-item h3 { font-family: 'Bodoni Moda', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 300; }
 .writing-intro { font-size: 0.85rem; color: var(--accent); margin-top: 1rem; max-width: 600px; line-height: 1.8; }
-/* Forced alignment for metadata */
 .writing-meta { font-size: 0.65rem; letter-spacing: 0.25em; color: var(--accent); padding-top: 1.2rem; width: 180px; text-align: right; white-space: nowrap; flex-shrink: 0; margin-left: auto; }
 
 /* Archive */
@@ -131,6 +144,7 @@ html { scroll-behavior: smooth; }
     .inline-portrait-wrap { float: none; width: 100%; margin-left: 0; margin-top: 2rem; }
     .writing-meta { margin-left: 0; text-align: left; padding-top: 1rem; }
     .section-tag { position: relative; top: 0; margin-bottom: 2rem; }
+    .ghost-monogram { font-size: 80vw; top: 25vh; left: -10vw; opacity: 0.015; }
 }
 
 @media (max-width: 768px) {
