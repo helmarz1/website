@@ -11,7 +11,7 @@
 
     <div class="grain"></div>
 
-    <nav class="luxury-nav">
+    <nav class="luxury-nav reveal">
         <div class="nav-brand">
             <img src="brand-icon.png" alt="" class="nav-icon-img">
             HELEN MARZEC
@@ -26,7 +26,7 @@
         </div>
     </nav>
 
-    <section id="about" class="exposition">
+    <section id="about" class="exposition reveal">
         <div class="exposition-grid">
             <div class="column-left">
                 <h2 class="section-tag">THESIS</h2>
@@ -69,7 +69,7 @@
         </div>
     </section>
 
-    <section id="writing" class="writing-minimal">
+    <section id="writing" class="writing-minimal reveal">
         <div class="writing-grid">
             <div class="column-left">
                 <h2 class="section-tag section-tag-writing">WRITING</h2>
@@ -105,7 +105,7 @@
         </div>
     </section>
 
-    <section id="cv" class="archive-section">
+    <section id="cv" class="archive-section reveal">
         <div class="archive-grid">
             <div class="column-left">
                 <h2 class="section-tag">ARCHIVE</h2>
@@ -199,7 +199,7 @@
         </div>
     </section>
 
-    <section id="focus" class="capabilities-section">
+    <section id="focus" class="capabilities-section reveal">
         <div class="capabilities-grid">
             <div class="column-left">
                 <h2 class="section-tag">FOCUS</h2>
@@ -207,27 +207,45 @@
             <div class="column-right">
                 <div class="focus-list">
                     <div class="focus-item">
-                        <strong class="focus-title">Creative Positioning</strong>
+                        <div class="focus-header">
+                            <span class="focus-index">01</span>
+                            <strong class="focus-title">Creative Positioning</strong>
+                        </div>
                         <p>Defining competitive advantage by anchoring brand identity in value interpretation frameworks.</p>
                     </div>
                     <div class="focus-item">
-                        <strong class="focus-title">Go-to-Market Planning</strong>
+                        <div class="focus-header">
+                            <span class="focus-index">02</span>
+                            <strong class="focus-title">Go-to-Market Planning</strong>
+                        </div>
                         <p>Architecting commercial roadmaps that reduce adoption friction and accelerate market entry.</p>
                     </div>
                     <div class="focus-item">
-                        <strong class="focus-title">Narrative & Messaging</strong>
+                        <div class="focus-header">
+                            <span class="focus-index">03</span>
+                            <strong class="focus-title">Narrative & Messaging</strong>
+                        </div>
                         <p>Translating technical complexity into strategic storytelling to build market belief and trust.</p>
                     </div>
                     <div class="focus-item">
-                        <strong class="focus-title">Market Segmentation</strong>
+                        <div class="focus-header">
+                            <span class="focus-index">04</span>
+                            <strong class="focus-title">Market Segmentation</strong>
+                        </div>
                         <p>Identifying high-potential opportunities through data-driven analysis of behavioural drivers.</p>
                     </div>
                     <div class="focus-item">
-                        <strong class="focus-title">Organizational Relations</strong>
+                        <div class="focus-header">
+                            <span class="focus-index">05</span>
+                            <strong class="focus-title">Organizational Relations</strong>
+                        </div>
                         <p>Navigating stakeholder interests through incentive alignment and strategic partnership management.</p>
                     </div>
                     <div class="focus-item">
-                        <strong class="focus-title">Competitive Research</strong>
+                        <div class="focus-header">
+                            <span class="focus-index">06</span>
+                            <strong class="focus-title">Competitive Research</strong>
+                        </div>
                         <p>Decoding market landscapes to anticipate shifts in sentiment and competitor vulnerabilities.</p>
                     </div>
                 </div>
@@ -235,7 +253,7 @@
         </div>
     </section>
 
-    <footer class="luxury-footer">
+    <footer class="luxury-footer reveal">
         <div class="footer-wrap">
             <a href="mailto:helen@helenmarzec.com" class="footer-cta">CONTACT ↗</a>
         </div>
@@ -245,6 +263,22 @@
         </div>
     </footer>
 
+    <script>
+        // Amplified Intersection Observer for high-impact reveal
+        const observerOptions = { 
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px" 
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
 </body>
 </html>
-
