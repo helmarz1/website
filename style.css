@@ -29,7 +29,7 @@ body {
 .nav-links a:hover { opacity: 1; }
 
 /* Global Grid Consistency */
-.exposition-grid, .writing-grid, .archive-grid { 
+.exposition-grid, .capabilities-grid, .writing-grid, .archive-grid { 
     display: grid; 
     grid-template-columns: 1.2fr 3.8fr; 
     gap: 4rem; 
@@ -37,7 +37,7 @@ body {
 
 /* Section Spacing */
 .exposition { padding: 12rem 10% 6rem 10%; }
-.writing-minimal, .archive-section { padding: 6rem 10%; border-top: 1px solid var(--line); }
+.capabilities-section, .writing-minimal, .archive-section { padding: 6rem 10%; border-top: 1px solid var(--line); }
 
 .section-tag { font-size: 0.6rem; letter-spacing: 0.6em; color: var(--accent); text-transform: uppercase; position: sticky; top: 7rem; }
 .anchor-text { font-family: 'Bodoni Moda', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.3; margin-bottom: 4rem; font-style: italic; color: #fff; max-width: 100%; }
@@ -58,7 +58,25 @@ body {
 .current-focus-block { border-top: 1px solid var(--line); padding-top: 3rem; margin-top: 3rem; clear: both; }
 .placard-sub { font-size: 0.55rem; letter-spacing: 0.5em; color: var(--accent); margin-bottom: 1.5rem; display: block; }
 
-/* Writing Items - Realigned to Grid */
+/* Focus List Styling */
+.focus-list { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 3rem 4rem; 
+}
+.focus-item { border-bottom: 1px solid var(--line); padding-bottom: 2rem; }
+.focus-title { 
+    display: block; 
+    font-weight: 300; 
+    letter-spacing: 0.05em; 
+    color: var(--text); 
+    margin-bottom: 0.8rem; 
+    font-size: 1.1rem; 
+    text-transform: uppercase; 
+}
+.focus-item p { font-size: 0.85rem; color: var(--accent); line-height: 1.8; }
+
+/* Writing Items */
 .writing-item { display: flex; justify-content: space-between; padding: 2.5rem 0; text-decoration: none; color: var(--text); border-bottom: 1px solid var(--line); transition: 0.4s; }
 .writing-item:hover { padding-left: 1rem; background: rgba(255,255,255,0.01); }
 .writing-num { font-size: 0.6rem; color: var(--accent); width: 60px; padding-top: 0.8rem; }
@@ -66,7 +84,7 @@ body {
 .writing-intro { font-size: 0.85rem; color: var(--accent); margin-top: 1rem; max-width: 700px; line-height: 1.8; }
 .writing-meta { font-size: 0.65rem; letter-spacing: 0.25em; color: var(--accent); padding-top: 1rem; }
 
-/* Archive - Headers scaled down marginally */
+/* Archive Styling */
 .archive-content { display: flex; flex-direction: column; gap: 4rem; }
 .archive-category { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--accent); margin-bottom: 2rem; text-transform: uppercase; }
 .archive-item { display: flex; align-items: flex-start; padding: 2rem 0; border-bottom: 1px solid var(--line); font-size: 1.1rem; }
@@ -96,7 +114,8 @@ body {
 .footer-fine-print { display: flex; justify-content: space-between; margin-top: 6rem; font-size: 0.6rem; letter-spacing: 0.4em; color: var(--accent); text-transform: uppercase; }
 
 @media (max-width: 1024px) {
-    .exposition-grid, .writing-grid, .archive-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .exposition-grid, .capabilities-grid, .writing-grid, .archive-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .focus-list { grid-template-columns: 1fr; gap: 2rem; }
     .inline-portrait-wrap { float: none; width: 100%; margin-left: 0; margin-top: 2rem; }
     .biography-text p { text-align: left; }
 }
