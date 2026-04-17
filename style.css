@@ -34,34 +34,22 @@ body {
 .nav-links a { text-decoration: none; color: var(--text); margin-left: 3rem; opacity: 0.5; transition: 0.4s; }
 .nav-links a:hover { opacity: 1; }
 
-/* Header - Left Aligned & Proportionate */
-.luxury-hero { 
-    height: 75vh; 
-    display: flex; 
-    align-items: flex-end; 
-    padding: 0 10% 10vh 10%; 
-    animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+/* Section Spacing */
+.exposition { 
+    padding: 12rem 10% 6rem 10%; 
+    border-top: none; 
 }
-.hero-masthead { width: 100%; max-width: 900px; text-align: left; }
 
-.brand-name-refined { font-family: 'Bodoni Moda', serif; line-height: 0.85; margin-bottom: 2rem; }
-.name-top { display: block; font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 300; font-style: italic; color: var(--accent); }
-.name-bottom { display: block; font-size: clamp(3.5rem, 7vw, 5.5rem); font-weight: 100; text-transform: uppercase; letter-spacing: -0.02em; color: #fff; margin-top: -0.5rem; }
-
-.masthead-rule { width: 100%; height: 1px; background: var(--line); margin-bottom: 1.5rem; transform-origin: left; animation: reveal 1.5s ease-out; }
-.masthead-sub { display: flex; align-items: center; font-size: 0.6rem; letter-spacing: 0.45em; color: var(--accent); text-transform: uppercase; }
-.sub-divider { margin: 0 1.5rem; opacity: 0.3; }
-
-/* Section Spacing - Tightened */
-.exposition, .writing-minimal, .archive-section { 
+.writing-minimal, .archive-section { 
     padding: 6rem 10%; 
     border-top: 1px solid var(--line); 
 }
+
 .exposition-grid, .archive-grid { display: grid; grid-template-columns: 1fr 3fr; gap: 5rem; }
 .section-tag { font-size: 0.6rem; letter-spacing: 0.6em; color: var(--accent); text-transform: uppercase; position: sticky; top: 7rem; }
 .anchor-text { font-family: 'Bodoni Moda', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.3; margin-bottom: 4rem; font-style: italic; color: #fff; }
 
-.biography-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 6rem; }
+.biography-layout { display: block; }
 .biography-text { font-size: 0.95rem; color: var(--accent); }
 .intro-statement { font-size: 1.2rem; color: var(--text); margin-bottom: 2.5rem; }
 .biography-text p { margin-bottom: 1.5rem; }
@@ -70,50 +58,52 @@ body {
 .current-focus-block { border-top: 1px solid var(--line); padding-top: 3rem; margin-top: 3rem; }
 .placard-sub { font-size: 0.55rem; letter-spacing: 0.5em; color: var(--accent); margin-bottom: 1.5rem; display: block; }
 
-/* Portrait Gallery */
-.portrait-frame { padding: 1.2rem; }
-.main-portrait { width: 100%; filter: grayscale(1); margin-bottom: 1.2rem; transition: 0.8s filter ease; }
+/* Portrait Gallery - Now on Left */
+.portrait-gallery-wrap { margin-top: 4rem; }
+.portrait-frame { padding: 0; }
+.main-portrait { width: 100%; filter: grayscale(1); transition: 0.8s filter ease; }
 .main-portrait:hover { filter: grayscale(0); }
 
-/* Writing Items with Hover Motion */
+/* Writing Items */
 .writing-item { display: flex; justify-content: space-between; padding: 2.5rem 0; text-decoration: none; color: var(--text); border-bottom: 1px solid var(--line); transition: 0.4s; }
 .writing-item:hover { padding-left: 1.5rem; background: rgba(255,255,255,0.01); }
 .writing-num { font-size: 0.6rem; color: var(--accent); width: 60px; padding-top: 0.8rem; }
 .writing-item h3 { font-family: 'Bodoni Moda', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 300; transition: 0.4s; }
 .writing-intro { font-size: 0.85rem; color: var(--accent); margin-top: 1rem; max-width: 600px; line-height: 1.8; }
+.writing-meta { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--accent); padding-top: 0.8rem; }
 
-/* Archive - Enhanced Legibility */
-.archive-content { display: flex; flex-direction: column; gap: 4rem; } /* Reduced gap from 8rem */
+/* Archive */
+.archive-content { display: flex; flex-direction: column; gap: 4rem; }
 .archive-category { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--accent); margin-bottom: 2rem; text-transform: uppercase; }
 .archive-item { display: flex; align-items: flex-start; padding: 2rem 0; border-bottom: 1px solid var(--line); font-size: 1.1rem; }
 .archive-item span { width: 120px; color: var(--accent); font-family: monospace; font-size: 0.75rem; flex-shrink: 0; }
 .item-detail { flex-grow: 1; }
-
 .org-name, .archive-item strong { display: block; font-weight: 300; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.5rem; font-size: 1.2rem; }
 
-/* Project/Academic Subtitles */
-.academic-sub-style p { 
-    font-size: 0.75rem; 
-    color: var(--accent); 
-    text-transform: uppercase; 
-    letter-spacing: 0.12em; 
-    margin-bottom: 0.4rem; 
-    font-weight: 300;
-}
-
-/* Recognition */
+/* Academic & Recognition Sub-styles */
+.academic-sub-style p { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.4rem; font-weight: 300; }
 .recognition-title { font-family: 'Bodoni Moda', serif !important; font-size: 1.6rem !important; font-style: italic !important; text-transform: none !important; color: #fff !important; }
 .recognition-description { font-size: 0.9rem; color: var(--accent); margin-top: 1.5rem; max-width: 650px; line-height: 1.8; }
 .award-meta-style { font-size: 0.65rem; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-top: 1.5rem; }
 
 /* Footer */
 .luxury-footer { padding: 8rem 10% 4rem 10%; border-top: 1px solid var(--line); }
-.footer-cta { font-family: 'Bodoni Moda', serif; font-size: clamp(3rem, 12vw, 8rem); text-decoration: none; color: var(--text); font-weight: 100; font-style: italic; line-height: 1; transition: 0.5s; }
+.footer-cta { 
+    font-family: 'Bodoni Moda', serif; 
+    font-size: clamp(2rem, 5vw, 3.5rem); 
+    text-decoration: none; 
+    color: var(--text); 
+    font-weight: 300; 
+    font-style: italic; 
+    line-height: 1; 
+    transition: 0.5s; 
+    letter-spacing: 0.05em;
+}
 .footer-cta:hover { color: var(--accent); padding-left: 1rem; }
 .footer-fine-print { display: flex; justify-content: space-between; margin-top: 6rem; font-size: 0.6rem; letter-spacing: 0.4em; color: var(--accent); text-transform: uppercase; }
 
 @media (max-width: 1024px) {
-    .hero-masthead { text-align: left; }
     .biography-layout { grid-template-columns: 1fr; }
     .archive-grid, .exposition-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .portrait-gallery-wrap { max-width: 300px; margin-top: 2rem; }
 }
