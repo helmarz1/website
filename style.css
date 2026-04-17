@@ -1,6 +1,4 @@
 :root {
-    /* Color Theory: Deep Phthalo Emerald (#061410)
-       Intellectual, stable, and commanding. */
     --bg: #061410; 
     --text: #f4f1ee;
     --accent: #7a8c84;
@@ -9,12 +7,19 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
 
+/* Motion / Keyframes */
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 body { 
     background: var(--bg); 
     color: var(--text); 
     font-family: 'Inter', sans-serif; 
     font-weight: 200; 
-    line-height: 1.6; 
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
 .grain { 
@@ -24,81 +29,91 @@ body {
 }
 
 /* Navigation */
-.luxury-nav { display: flex; justify-content: space-between; padding: 2.5rem 4rem; position: fixed; width: 100%; z-index: 100; font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; }
+.luxury-nav { display: flex; justify-content: space-between; padding: 2.5rem 10%; position: fixed; width: 100%; z-index: 100; font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; }
 .nav-brand { font-family: 'Bodoni Moda', serif; font-size: 1.1rem; }
 .nav-links a { text-decoration: none; color: var(--text); margin-left: 3rem; opacity: 0.5; transition: 0.4s; }
+.nav-links a:hover { opacity: 1; }
 
-/* Header - Adjusted margin to help fitting */
-.luxury-hero { height: 100vh; display: flex; align-items: center; padding: 0 10%; }
-.hero-masthead { display: grid; grid-template-columns: 0.35fr 1.65fr; align-items: center; gap: 4rem; width: 100%; }
+/* Header - Left Aligned & Proportionate */
+.luxury-hero { 
+    height: 75vh; 
+    display: flex; 
+    align-items: flex-end; 
+    padding: 0 10% 10vh 10%; 
+    animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-masthead { width: 100%; max-width: 900px; text-align: left; }
 
-.brand-name-refined { font-family: 'Bodoni Moda', serif; line-height: 0.85; margin-bottom: 1rem; } /* Reduced margin from 2rem */
-.name-top { display: block; font-size: clamp(3.5rem, 7.5vw, 6rem); font-weight: 300; font-style: italic; color: var(--accent); }
-.name-bottom { display: block; font-size: clamp(3.8rem, 8vw, 6.5rem); font-weight: 100; text-transform: uppercase; letter-spacing: -0.02em; color: #fff; margin-top: -0.5rem; }
+.brand-name-refined { font-family: 'Bodoni Moda', serif; line-height: 0.85; margin-bottom: 2rem; }
+.name-top { display: block; font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 300; font-style: italic; color: var(--accent); }
+.name-bottom { display: block; font-size: clamp(3.5rem, 7vw, 5.5rem); font-weight: 100; text-transform: uppercase; letter-spacing: -0.02em; color: #fff; margin-top: -0.5rem; }
 
-.masthead-rule { width: 100%; height: 1px; background: var(--line); margin-bottom: 1.5rem; }
-.masthead-sub { display: flex; align-items: center; font-size: 0.55rem; letter-spacing: 0.45em; color: var(--accent); text-transform: uppercase; }
+.masthead-rule { width: 100%; height: 1px; background: var(--line); margin-bottom: 1.5rem; transform-origin: left; animation: reveal 1.5s ease-out; }
+.masthead-sub { display: flex; align-items: center; font-size: 0.6rem; letter-spacing: 0.45em; color: var(--accent); text-transform: uppercase; }
 .sub-divider { margin: 0 1.5rem; opacity: 0.3; }
 
-/* Section Spacing */
-.exposition { padding: 8rem 10%; border-top: 1px solid var(--line); }
-.writing-minimal { padding: 6rem 10%; border-top: 1px solid var(--line); }
-.archive-section { padding: 8rem 10%; border-top: 1px solid var(--line); }
-
+/* Section Spacing - Tightened */
+.exposition, .writing-minimal, .archive-section { 
+    padding: 6rem 10%; 
+    border-top: 1px solid var(--line); 
+}
 .exposition-grid, .archive-grid { display: grid; grid-template-columns: 1fr 3fr; gap: 5rem; }
-.section-tag { font-size: 0.5rem; letter-spacing: 0.6em; color: var(--accent); text-transform: uppercase; position: sticky; top: 7rem; }
+.section-tag { font-size: 0.6rem; letter-spacing: 0.6em; color: var(--accent); text-transform: uppercase; position: sticky; top: 7rem; }
 .anchor-text { font-family: 'Bodoni Moda', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.3; margin-bottom: 4rem; font-style: italic; color: #fff; }
 
 .biography-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 6rem; }
-.biography-text { font-size: 0.9rem; color: var(--accent); }
-.intro-statement { font-size: 1.15rem; color: var(--text); margin-bottom: 2.5rem; }
+.biography-text { font-size: 0.95rem; color: var(--accent); }
+.intro-statement { font-size: 1.2rem; color: var(--text); margin-bottom: 2.5rem; }
 .biography-text p { margin-bottom: 1.5rem; }
 
 /* Current Focus */
 .current-focus-block { border-top: 1px solid var(--line); padding-top: 3rem; margin-top: 3rem; }
-.placard-sub { font-size: 0.5rem; letter-spacing: 0.5em; color: var(--accent); margin-bottom: 1.5rem; display: block; }
+.placard-sub { font-size: 0.55rem; letter-spacing: 0.5em; color: var(--accent); margin-bottom: 1.5rem; display: block; }
 
-/* Portrait Gallery - Lines Removed */
-.portrait-frame { padding: 1.2rem; } /* Removed border and background */
-.main-portrait { width: 100%; filter: grayscale(1); margin-bottom: 1.2rem; }
-.frame-details { display: flex; justify-content: space-between; font-size: 0.5rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; padding-top: 1rem; } /* Removed border-top */
+/* Portrait Gallery */
+.portrait-frame { padding: 1.2rem; }
+.main-portrait { width: 100%; filter: grayscale(1); margin-bottom: 1.2rem; transition: 0.8s filter ease; }
+.main-portrait:hover { filter: grayscale(0); }
 
-/* Writing Items */
-.writing-item { display: flex; justify-content: space-between; padding: 2.5rem 0; text-decoration: none; color: var(--text); border-bottom: 1px solid var(--line); }
-.writing-num { font-size: 0.55rem; color: var(--accent); width: 60px; padding-top: 0.8rem; }
-.writing-item h3 { font-family: 'Bodoni Moda', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 300; }
-.writing-intro { font-size: 0.75rem; color: var(--accent); margin-top: 0.8rem; max-width: 550px; line-height: 1.8; }
+/* Writing Items with Hover Motion */
+.writing-item { display: flex; justify-content: space-between; padding: 2.5rem 0; text-decoration: none; color: var(--text); border-bottom: 1px solid var(--line); transition: 0.4s; }
+.writing-item:hover { padding-left: 1.5rem; background: rgba(255,255,255,0.01); }
+.writing-num { font-size: 0.6rem; color: var(--accent); width: 60px; padding-top: 0.8rem; }
+.writing-item h3 { font-family: 'Bodoni Moda', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 300; transition: 0.4s; }
+.writing-intro { font-size: 0.85rem; color: var(--accent); margin-top: 1rem; max-width: 600px; line-height: 1.8; }
 
-/* Archive Typography */
-.archive-content { display: flex; flex-direction: column; gap: 6rem; }
-.archive-category { font-size: 0.5rem; letter-spacing: 0.5em; color: var(--accent); margin-bottom: 2.5rem; text-transform: uppercase; }
-.archive-item { display: flex; align-items: flex-start; padding: 1.8rem 0; border-bottom: 1px solid var(--line); font-size: 0.8rem; }
-.archive-item span { width: 80px; color: var(--accent); font-family: monospace; font-size: 0.6rem; }
+/* Archive - Enhanced Legibility */
+.archive-content { display: flex; flex-direction: column; gap: 4rem; } /* Reduced gap from 8rem */
+.archive-category { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--accent); margin-bottom: 2rem; text-transform: uppercase; }
+.archive-item { display: flex; align-items: flex-start; padding: 2rem 0; border-bottom: 1px solid var(--line); font-size: 1.1rem; }
+.archive-item span { width: 120px; color: var(--accent); font-family: monospace; font-size: 0.75rem; flex-shrink: 0; }
+.item-detail { flex-grow: 1; }
 
-/* Changed to allow natural case written in HTML (Title Case) */
-.org-name, .archive-item strong { display: block; font-weight: 300; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.3rem; }
+.org-name, .archive-item strong { display: block; font-weight: 300; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.5rem; font-size: 1.2rem; }
 
 /* Project/Academic Subtitles */
 .academic-sub-style p { 
-    font-size: 0.65rem; 
+    font-size: 0.75rem; 
     color: var(--accent); 
     text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-    margin-bottom: 0.3rem; 
+    letter-spacing: 0.12em; 
+    margin-bottom: 0.4rem; 
     font-weight: 300;
 }
 
 /* Recognition */
-.recognition-title { font-family: 'Bodoni Moda', serif !important; font-size: 1.3rem !important; font-style: italic !important; text-transform: none !important; color: #fff !important; }
-.recognition-description { font-size: 0.75rem; color: var(--accent); margin-top: 1rem; max-width: 500px; line-height: 1.8; }
-.award-meta-style { font-size: 0.5rem; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-top: 1.2rem; }
+.recognition-title { font-family: 'Bodoni Moda', serif !important; font-size: 1.6rem !important; font-style: italic !important; text-transform: none !important; color: #fff !important; }
+.recognition-description { font-size: 0.9rem; color: var(--accent); margin-top: 1.5rem; max-width: 650px; line-height: 1.8; }
+.award-meta-style { font-size: 0.65rem; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-top: 1.5rem; }
 
 /* Footer */
-.luxury-footer { padding: 10rem 10% 4rem 10%; border-top: 1px solid var(--line); }
+.luxury-footer { padding: 8rem 10% 4rem 10%; border-top: 1px solid var(--line); }
 .footer-cta { font-family: 'Bodoni Moda', serif; font-size: clamp(3rem, 12vw, 8rem); text-decoration: none; color: var(--text); font-weight: 100; font-style: italic; line-height: 1; transition: 0.5s; }
-.footer-fine-print { display: flex; justify-content: space-between; margin-top: 8rem; font-size: 0.5rem; letter-spacing: 0.4em; color: var(--accent); text-transform: uppercase; }
+.footer-cta:hover { color: var(--accent); padding-left: 1rem; }
+.footer-fine-print { display: flex; justify-content: space-between; margin-top: 6rem; font-size: 0.6rem; letter-spacing: 0.4em; color: var(--accent); text-transform: uppercase; }
 
 @media (max-width: 1024px) {
-    .hero-masthead { grid-template-columns: 1fr; gap: 2rem; } /* Reduced gap for fitting */
+    .hero-masthead { text-align: left; }
     .biography-layout { grid-template-columns: 1fr; }
+    .archive-grid, .exposition-grid { grid-template-columns: 1fr; gap: 3rem; }
 }
