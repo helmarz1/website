@@ -70,14 +70,13 @@ html {
     text-rendering: optimizeLegibility;
 }
 
-/* Stable Dash Strategy: Prevents mobile layout-drift and desktop misalignment */
+/* Optimized Stable Dash: Uses padding instead of width to prevent overlapping */
 .stable-dash {
     display: inline-block;
-    font-family: 'Inter', sans-serif; /* Guaranteed visibility */
+    font-family: 'Inter', sans-serif;
     font-style: normal;
     text-align: center;
-    width: 1.4ch; /* Fixed mathematical width relative to the font-size */
-    margin: 0 0.1em; /* Minimal controlled spacing */
+    padding: 0 0.25em; /* Safe spacing buffer that prevents overlap */
     vertical-align: middle;
 }
 
@@ -220,8 +219,8 @@ html {
     
     .anchor-text { font-size: 1.8rem; margin-bottom: 2rem; }
     
-    /* Ensure dash doesn't create extra space on small screens */
-    .stable-dash { width: 1ch; }
+    /* Ensure dash has slightly more space on smaller mobile screens */
+    .stable-dash { padding: 0 0.35em; }
 
     .writing-item h3 { font-size: 1.5rem; }
     .writing-thumb-wrap { width: 60px; height: 60px; margin-right: 1rem; }
