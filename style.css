@@ -56,6 +56,7 @@ html {
 .section-tag { font-size: 0.6rem; letter-spacing: 0.6em; color: var(--accent); text-transform: uppercase; position: sticky; top: 7rem; }
 .section-tag-writing { top: 9.3rem; }
 
+/* RECTIFIED ANCHOR TEXT & DASHES */
 .anchor-text { 
     font-family: 'Bodoni Moda', serif; 
     font-size: clamp(2rem, 3.5vw, 2.8rem); 
@@ -66,10 +67,18 @@ html {
     max-width: 100%; 
     font-weight: 300;
     letter-spacing: -0.02em;
-    /* Force character rendering and spacing */
     text-rendering: optimizeLegibility;
-    font-feature-settings: "kern";
-    white-space: normal;
+}
+
+/* Stable Dash Strategy: Prevents mobile layout-drift and desktop misalignment */
+.stable-dash {
+    display: inline-block;
+    font-family: 'Inter', sans-serif; /* Guaranteed visibility */
+    font-style: normal;
+    text-align: center;
+    width: 1.4ch; /* Fixed mathematical width relative to the font-size */
+    margin: 0 0.1em; /* Minimal controlled spacing */
+    vertical-align: middle;
 }
 
 /* Thesis Alignment */
@@ -209,12 +218,11 @@ html {
     
     .exposition { padding-top: 8rem; }
     
-    .anchor-text { 
-        font-size: 1.8rem; 
-        margin-bottom: 2rem;
-        word-spacing: -0.05em; /* Tighten word spacing to keep elements together */
-    }
+    .anchor-text { font-size: 1.8rem; margin-bottom: 2rem; }
     
+    /* Ensure dash doesn't create extra space on small screens */
+    .stable-dash { width: 1ch; }
+
     .writing-item h3 { font-size: 1.5rem; }
     .writing-thumb-wrap { width: 60px; height: 60px; margin-right: 1rem; }
     
