@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. INTELLIGENT NAVIGATION (Active State)
     const navLinks = document.querySelectorAll('.nav-links a');
-    const sections = document.querySelectorAll('section[id]');
+    const sections = document.querySelectorAll('section[id], footer[id]'); // Added footer[id]
 
     const navObserverOptions = {
         threshold: 0,
