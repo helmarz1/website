@@ -48,18 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // 4. NATURAL TYPEWRITER LOGIC (REVISED FOR EM DASH STABILITY)
+    // 4. NATURAL TYPEWRITER LOGIC (CHROME MOBILE STABILITY FIX)
     function startTypewriter() {
         const typewriterTarget = document.querySelector('.anchor-text');
         if (!typewriterTarget || typewriterTarget.getAttribute('data-started')) return;
         
         typewriterTarget.setAttribute('data-started', 'true');
         
-        // Use a hidden temporary div to decode entities so we get the real "—" symbol
+        // Step 1: Get the text content correctly
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = typewriterTarget.innerHTML;
         const fullText = tempDiv.textContent || tempDiv.innerText;
 
+        // Step 2: Clear and prepare
         typewriterTarget.innerHTML = ''; 
         typewriterTarget.style.opacity = '1';
         
@@ -68,19 +69,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i < fullText.length) {
                 let char = fullText.charAt(i);
                 
-                // Chrome Mobile Fix: Wrap em dashes in a span to force rendering
+                // CRITICAL FIX FOR CHROME MOBILE:
+                // If it's a dash, we use an inline-block span to ensure Chrome "sees" it.
                 if (char === '—' || char === '–') {
-                    typewriterTarget.innerHTML += `<span style="display:inline-block; min-width:0.5em;">${char}</span>`;
+                    typewriterTarget.insertAdjacentHTML('beforeend', `<span style="display:inline-block; width:auto; min-width:0.7em; visibility:visible !important; opacity:1 !important;">${char}</span>`);
                 } else {
                     typewriterTarget.innerHTML += char;
                 }
+                
                 i++;
 
                 let delay = Math.floor(Math.random() * 30) + 25; 
                 
-                // Em Dash (—) or En Dash (–) Check
                 if (char === '—' || char === '–' || char === '-') {
-                    delay = 600; // Keep the dramatic pause
+                    delay = 600; 
                 } else if (char === '.') {
                     delay = 600; 
                 } else if (char === ',') {
