@@ -48,14 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // 4. NATURAL TYPEWRITER LOGIC (REVISED FOR EM DASH STABILITY)
+    // 4. NATURAL TYPEWRITER LOGIC (FIXED FOR CHROME MOBILE EM DASH)
     function startTypewriter() {
         const typewriterTarget = document.querySelector('.anchor-text');
         if (!typewriterTarget || typewriterTarget.getAttribute('data-started')) return;
         
         typewriterTarget.setAttribute('data-started', 'true');
         
-        // Use a hidden temporary div to decode entities so we get the real "—" symbol
+        // Decode HTML entities first so Chrome handles the "—" as a character, not a code
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = typewriterTarget.innerHTML;
         const fullText = tempDiv.textContent || tempDiv.innerText;
@@ -68,15 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i < fullText.length) {
                 let char = fullText.charAt(i);
                 
-                // If it's an em dash or similar long dash, type it and skip the delay
                 typewriterTarget.innerHTML += char;
                 i++;
 
                 let delay = Math.floor(Math.random() * 30) + 25; 
                 
-                // Em Dash (—) or En Dash (–) Check
+                // Pause for dashes and punctuation
                 if (char === '—' || char === '–' || char === '-') {
-                    delay = 600; // Keep the dramatic pause, but the symbol is already in
+                    delay = 600; 
                 } else if (char === '.') {
                     delay = 600; 
                 } else if (char === ',') {
