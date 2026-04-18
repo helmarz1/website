@@ -175,7 +175,7 @@ section[id], footer[id] {
 }
 
 @media (max-width: 768px) {
-    .luxury-nav { padding: 1.5rem 5%; flex-direction: column; height: auto; position: absolute; }
+    .luxury-nav { padding: 1.5rem 5%; flex-direction: column; height: auto; position: fixed; }
     .nav-brand { margin-bottom: 1.5rem; }
     .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; width: 100%; }
     .nav-links a { margin-left: 0; font-size: 0.5rem; }
