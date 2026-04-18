@@ -48,19 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // 4. NATURAL TYPEWRITER LOGIC (CHROME MOBILE STABILITY FIX)
+    // 4. NATURAL TYPEWRITER LOGIC (CHROME RENDERING FIX)
     function startTypewriter() {
         const typewriterTarget = document.querySelector('.anchor-text');
         if (!typewriterTarget || typewriterTarget.getAttribute('data-started')) return;
         
         typewriterTarget.setAttribute('data-started', 'true');
         
-        // Step 1: Get the text content correctly
+        // Step 1: Extract the full text properly
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = typewriterTarget.innerHTML;
         const fullText = tempDiv.textContent || tempDiv.innerText;
 
-        // Step 2: Clear and prepare
+        // Step 2: Clear and show container
         typewriterTarget.innerHTML = ''; 
         typewriterTarget.style.opacity = '1';
         
@@ -69,18 +69,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i < fullText.length) {
                 let char = fullText.charAt(i);
                 
-                // CRITICAL FIX FOR CHROME MOBILE:
-                // If it's a dash, we use an inline-block span to ensure Chrome "sees" it.
-                if (char === '—' || char === '–') {
-                    typewriterTarget.insertAdjacentHTML('beforeend', `<span style="display:inline-block; width:auto; min-width:0.7em; visibility:visible !important; opacity:1 !important;">${char}</span>`);
-                } else {
-                    typewriterTarget.innerHTML += char;
-                }
+                // FINAL RENDER FIX: Use a TextNode to bypass Chrome's HTML parser
+                // This forces the em dash to be drawn as a literal glyph
+                const node = document.createTextNode(char);
+                typewriterTarget.appendChild(node);
                 
                 i++;
 
                 let delay = Math.floor(Math.random() * 30) + 25; 
                 
+                // Maintain the dramatic pause for the em dash
                 if (char === '—' || char === '–' || char === '-') {
                     delay = 600; 
                 } else if (char === '.') {
