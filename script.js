@@ -1,21 +1,25 @@
+/**
+ * HELEN MARZEC — STRATEGIC INTERACTION SCRIPT
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. INITIALIZATION AFTER FONT LOADING
+    // 1. FONT LOADING & INITIALIZATION
     if (document.fonts) {
         document.fonts.ready.then(() => {
             const monogram = document.querySelector('.ghost-monogram');
             if (monogram) monogram.style.opacity = '0.025';
             startTypewriter();
-            initFlow();
+            initAtmosphericFlow(); // Start background animation
         });
     } else {
         setTimeout(() => {
             startTypewriter();
-            initFlow();
+            initAtmosphericFlow();
         }, 1200);
     }
 
-    // 2. INTELLIGENT NAVIGATION
+    // 2. INTELLIGENT NAVIGATION (PRESERVED)
     const navLinks = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('section[id], footer[id]');
 
@@ -39,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => navObserver.observe(section));
 
-    // 3. REVEAL ENTRANCE LOGIC
+    // 3. REVEAL ENTRANCE LOGIC (PRESERVED)
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('active');
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // 4. TYPEWRITER — NODE-WALKING FIX FOR CHROME MOBILE EM DASH RENDERING
+    // 4. TYPEWRITER — NODE-WALKING LOGIC (PRESERVED)
     function startTypewriter() {
         const typewriterTarget = document.querySelector('.anchor-text');
         if (!typewriterTarget || typewriterTarget.getAttribute('data-started')) return;
@@ -71,7 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let i = 0;
         function type() {
             if (i >= queue.length) return;
-            const item = queue[i++];
+
+            const item = queue[i];
+            i++;
 
             if (item.type === 'node') {
                 typewriterTarget.appendChild(item.value);
@@ -90,50 +96,54 @@ document.addEventListener('DOMContentLoaded', () => {
         type();
     }
 
-    // 5. GAUSSIAN FLOW BACKGROUND ANIMATION
-    function initFlow() {
+    // 5. ATMOSPHERIC FLOW (NEW BACKGROUND SYSTEM)
+    function initAtmosphericFlow() {
         const canvas = document.getElementById('neuralCanvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        let particles = [];
+        let nodes = [];
 
         function resize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
 
-        class Node {
+        class AtmosphericNode {
             constructor() { this.reset(); }
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 250 + 150;
-                this.vx = (Math.random() - 0.5) * 0.2;
-                this.vy = (Math.random() - 0.5) * 0.2;
+                this.size = Math.random() * 450 + 250; 
+                this.vx = (Math.random() - 0.5) * 0.12;
+                this.vy = (Math.random() - 0.5) * 0.12;
+                this.color = Math.random() > 0.5 ? '244, 241, 238' : '122, 140, 132';
             }
             update() {
                 this.x += this.vx; this.y += this.vy;
-                if (this.x < -200 || this.x > canvas.width + 200) this.vx *= -1;
-                if (this.y < -200 || this.y > canvas.height + 200) this.vy *= -1;
+                if (this.x < -300 || this.x > canvas.width + 300) this.vx *= -1;
+                if (this.y < -300 || this.y > canvas.height + 300) this.vy *= -1;
             }
             draw() {
+                const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+                g.addColorStop(0, `rgba(${this.color}, 0.25)`);
+                g.addColorStop(0.6, `rgba(${this.color}, 0.04)`);
+                g.addColorStop(1, `rgba(${this.color}, 0)`);
+                ctx.fillStyle = g;
                 ctx.beginPath();
-                let g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-                g.addColorStop(0, 'rgba(244, 241, 238, 0.4)');
-                g.addColorStop(1, 'rgba(6, 20, 16, 0)');
-                ctx.fillStyle = g; ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
+            nodes.forEach(n => { n.update(); n.draw(); });
             requestAnimationFrame(animate);
         }
 
         window.addEventListener('resize', resize);
         resize();
-        for(let i=0; i<20; i++) particles.push(new Node());
+        for(let i=0; i<8; i++) nodes.push(new AtmosphericNode());
         animate();
     }
 });
