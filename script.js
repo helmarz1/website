@@ -1,21 +1,21 @@
-/**
- * HELEN MARZEC — STRATEGIC INTERACTION SCRIPT
- */
-
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. FONT LOADING SHIELD (Preserved)
+    // 1. INITIALIZATION AFTER FONT LOADING
     if (document.fonts) {
         document.fonts.ready.then(() => {
             const monogram = document.querySelector('.ghost-monogram');
             if (monogram) monogram.style.opacity = '0.025';
             startTypewriter();
+            initFlow();
         });
     } else {
-        setTimeout(startTypewriter, 1200);
+        setTimeout(() => {
+            startTypewriter();
+            initFlow();
+        }, 1200);
     }
 
-    // 2. INTELLIGENT NAVIGATION (Preserved)
+    // 2. INTELLIGENT NAVIGATION
     const navLinks = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('section[id], footer[id]');
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => navObserver.observe(section));
 
-    // 3. REVEAL ENTRANCE LOGIC (Preserved)
+    // 3. REVEAL ENTRANCE LOGIC
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('active');
@@ -49,21 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // 4. TYPEWRITER — NODE-WALKING FIX FOR CHROME MOBILE EM DASH RENDERING
-    //
-    // Root cause: extracting textContent strips the <span class="stable-dash"> wrappers.
-    // Chrome mobile cannot render em dashes as glyphs inside Bodoni Moda italic,
-    // so they go invisible. The fix: walk child nodes and build a typed queue that
-    // preserves span elements wholesale — they are inserted as complete nodes,
-    // while plain text nodes are typed character-by-character as before.
     function startTypewriter() {
         const typewriterTarget = document.querySelector('.anchor-text');
         if (!typewriterTarget || typewriterTarget.getAttribute('data-started')) return;
 
         typewriterTarget.setAttribute('data-started', 'true');
 
-        // Build an ordered queue from child nodes:
-        // - For a TEXT_NODE: split into individual character entries
-        // - For an ELEMENT_NODE (e.g. <span class="stable-dash">): push as a whole node
         const queue = [];
         typewriterTarget.childNodes.forEach(node => {
             if (node.nodeType === Node.TEXT_NODE) {
@@ -74,21 +65,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Clear the container and make it visible
         typewriterTarget.innerHTML = '';
         typewriterTarget.style.opacity = '1';
 
         let i = 0;
         function type() {
             if (i >= queue.length) return;
-
-            const item = queue[i];
-            i++;
+            const item = queue[i++];
 
             if (item.type === 'node') {
-                // Insert the entire span (stable-dash) — Inter font renders the dash correctly
                 typewriterTarget.appendChild(item.value);
-                // Dramatic pause after the em dash span
                 setTimeout(type, 600);
             } else {
                 const char = item.value;
@@ -102,5 +88,52 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         type();
+    }
+
+    // 5. GAUSSIAN FLOW BACKGROUND ANIMATION
+    function initFlow() {
+        const canvas = document.getElementById('neuralCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Node {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 250 + 150;
+                this.vx = (Math.random() - 0.5) * 0.2;
+                this.vy = (Math.random() - 0.5) * 0.2;
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < -200 || this.x > canvas.width + 200) this.vx *= -1;
+                if (this.y < -200 || this.y > canvas.height + 200) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                let g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+                g.addColorStop(0, 'rgba(244, 241, 238, 0.4)');
+                g.addColorStop(1, 'rgba(6, 20, 16, 0)');
+                ctx.fillStyle = g; ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        for(let i=0; i<20; i++) particles.push(new Node());
+        animate();
     }
 });
