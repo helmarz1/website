@@ -1,21 +1,22 @@
 /**
  * HELEN MARZEC — STRATEGIC INTERACTION SCRIPT
+ * Updated with Neural Connection Proximity Background
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. FONT LOADING & INITIALIZATION
+    // 1. INITIALIZATION
     if (document.fonts) {
         document.fonts.ready.then(() => {
             const monogram = document.querySelector('.ghost-monogram');
             if (monogram) monogram.style.opacity = '0.025';
             startTypewriter();
-            initAtmosphericFlow(); // Start background animation
+            initNeuralCircuitry(); // The new background logic
         });
     } else {
         setTimeout(() => {
             startTypewriter();
-            initAtmosphericFlow();
+            initNeuralCircuitry();
         }, 1200);
     }
 
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // 4. TYPEWRITER — NODE-WALKING LOGIC (PRESERVED)
+    // 4. TYPEWRITER (PRESERVED)
     function startTypewriter() {
         const typewriterTarget = document.querySelector('.anchor-text');
         if (!typewriterTarget || typewriterTarget.getAttribute('data-started')) return;
@@ -75,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let i = 0;
         function type() {
             if (i >= queue.length) return;
-
             const item = queue[i];
             i++;
 
@@ -85,65 +85,98 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 const char = item.value;
                 typewriterTarget.appendChild(document.createTextNode(char));
-
                 let delay = Math.floor(Math.random() * 30) + 25;
                 if (char === '.' ) delay = 600;
                 if (char === ',') delay = 300;
-
                 setTimeout(type, delay);
             }
         }
         type();
     }
 
-    // 5. ATMOSPHERIC FLOW (NEW BACKGROUND SYSTEM)
-    function initAtmosphericFlow() {
+    // 5. NEURAL CIRCUITRY (ELEVATED PROXIMITY BACKGROUND)
+    function initNeuralCircuitry() {
         const canvas = document.getElementById('neuralCanvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        let nodes = [];
+        let particles = [];
+        const particleCount = window.innerWidth < 768 ? 40 : 100;
+        const maxDistance = 150; // Distance at which lines appear
 
         function resize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
 
-        class AtmosphericNode {
-            constructor() { this.reset(); }
-            reset() {
+        class Particle {
+            constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 450 + 250; 
-                this.vx = (Math.random() - 0.5) * 0.12;
-                this.vy = (Math.random() - 0.5) * 0.12;
-                this.color = Math.random() > 0.5 ? '244, 241, 238' : '122, 140, 132';
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 1.5;
             }
+
             update() {
-                this.x += this.vx; this.y += this.vy;
-                if (this.x < -300 || this.x > canvas.width + 300) this.vx *= -1;
-                if (this.y < -300 || this.y > canvas.height + 300) this.vy *= -1;
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
             }
+
             draw() {
-                const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-                g.addColorStop(0, `rgba(${this.color}, 0.25)`);
-                g.addColorStop(0.6, `rgba(${this.color}, 0.04)`);
-                g.addColorStop(1, `rgba(${this.color}, 0)`);
-                ctx.fillStyle = g;
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(244, 241, 238, 0.5)';
                 ctx.fill();
+            }
+        }
+
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        const opacity = 1 - (distance / maxDistance);
+                        ctx.strokeStyle = `rgba(122, 140, 132, ${opacity * 0.2})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
             }
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            nodes.forEach(n => { n.update(); n.draw(); });
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            connectParticles();
             requestAnimationFrame(animate);
         }
 
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', () => {
+            resize();
+            createParticles();
+        });
+
         resize();
-        for(let i=0; i<8; i++) nodes.push(new AtmosphericNode());
+        createParticles();
         animate();
     }
 });
