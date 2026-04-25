@@ -1,6 +1,6 @@
 /**
  * HELEN MARZEC — STRATEGIC INTERACTION SCRIPT
- * Updated with Neural Connection Proximity Background
+ * Updated with Luminous Orbital Flow
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,16 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const monogram = document.querySelector('.ghost-monogram');
             if (monogram) monogram.style.opacity = '0.025';
             startTypewriter();
-            initNeuralCircuitry(); // The new background logic
+            initLuxuryFlow(); // UPDATED
         });
     } else {
         setTimeout(() => {
             startTypewriter();
-            initNeuralCircuitry();
+            initLuxuryFlow();
         }, 1200);
     }
 
-    // 2. INTELLIGENT NAVIGATION (PRESERVED)
+    // 2. INTELLIGENT NAVIGATION
     const navLinks = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('section[id], footer[id]');
 
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => navObserver.observe(section));
 
-    // 3. REVEAL ENTRANCE LOGIC (PRESERVED)
+    // 3. REVEAL ENTRANCE LOGIC
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('active');
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // 4. TYPEWRITER (PRESERVED)
+    // 4. TYPEWRITER
     function startTypewriter() {
         const typewriterTarget = document.querySelector('.anchor-text');
         if (!typewriterTarget || typewriterTarget.getAttribute('data-started')) return;
@@ -94,89 +94,89 @@ document.addEventListener('DOMContentLoaded', () => {
         type();
     }
 
-    // 5. NEURAL CIRCUITRY (ELEVATED PROXIMITY BACKGROUND)
-    function initNeuralCircuitry() {
-        const canvas = document.getElementById('neuralCanvas');
+    // 5. LUMINOUS ORBITAL FLOW (ELEVATED BACKGROUND)
+    function initLuxuryFlow() {
+        const canvas = document.getElementById('luxuryCanvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        let particles = [];
-        const particleCount = window.innerWidth < 768 ? 40 : 100;
-        const maxDistance = 150; // Distance at which lines appear
+        let orbs = [];
+        const orbCount = 7; // Low count for cleaner aesthetic
 
         function resize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
 
-        class Particle {
+        class LightOrb {
             constructor() {
+                this.init();
+            }
+
+            init() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 1.5;
+                // Barely perceptible movement
+                this.vx = (Math.random() - 0.5) * 0.25;
+                this.vy = (Math.random() - 0.5) * 0.25;
+                this.radius = Math.random() * 350 + 250;
+                // Using #7a8c84 base with ultra-low opacity
+                this.color = {
+                    r: 122, g: 140, b: 132,
+                    a: Math.random() * 0.12 + 0.05
+                };
             }
 
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
 
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                // Seamless looping
+                if (this.x < -this.radius) this.x = canvas.width + this.radius;
+                if (this.x > canvas.width + this.radius) this.x = -this.radius;
+                if (this.y < -this.radius) this.y = canvas.height + this.radius;
+                if (this.y > canvas.height + this.radius) this.y = -this.radius;
             }
 
             draw() {
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, 0, 
+                    this.x, this.y, this.radius
+                );
+                gradient.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.color.a})`);
+                gradient.addColorStop(1, 'rgba(6, 20, 16, 0)');
+
                 ctx.beginPath();
+                ctx.fillStyle = gradient;
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(244, 241, 238, 0.5)';
                 ctx.fill();
             }
         }
 
-        function createParticles() {
-            particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function connectParticles() {
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < maxDistance) {
-                        const opacity = 1 - (distance / maxDistance);
-                        ctx.strokeStyle = `rgba(122, 140, 132, ${opacity * 0.2})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
+        function createOrbs() {
+            orbs = [];
+            for (let i = 0; i < orbCount; i++) {
+                orbs.push(new LightOrb());
             }
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+            // Screen blend mode adds a "light bleed" luxury effect
+            ctx.globalCompositeOperation = 'screen';
+            orbs.forEach(orb => {
+                orb.update();
+                orb.draw();
             });
-            connectParticles();
             requestAnimationFrame(animate);
         }
 
         window.addEventListener('resize', () => {
             resize();
-            createParticles();
+            createOrbs();
         });
 
         resize();
-        createParticles();
+        createOrbs();
         animate();
     }
 });
