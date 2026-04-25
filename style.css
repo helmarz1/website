@@ -1,4 +1,4 @@
-:root {
+r:root {
     --bg: #061410; 
     --text: #f4f1ee;
     --accent: #7a8c84;
@@ -29,21 +29,23 @@ section[id], footer[id] {
     scroll-margin-top: 7rem;
 }
 
-/* BACKGROUND FLOW INTEGRATION */
-.neural-container {
+/* UPDATED: LUXURY BACKGROUND FLOW */
+.luxury-bg-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2; /* Keeps it behind text */
+    z-index: -2;
     pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, #0a1f19 0%, #061410 100%);
 }
 
-#neuralCanvas {
+#luxuryCanvas {
     width: 100%;
     height: 100%;
-    opacity: 0.25; /* Subtle visibility */
+    opacity: 0.45;
+    filter: blur(65px); /* Creates the ethereal aura effect */
 }
 
 .grain { 
