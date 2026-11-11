@@ -366,6 +366,8 @@ section[id], footer[id] {
     font-weight: 300; 
 }
 
+.static-item .academic-sub-style p:first-child { color: var(--text); }
+
 .award-item { border-bottom: 1px solid var(--line) !important; cursor: default; }
 
 .recognition-title { 
